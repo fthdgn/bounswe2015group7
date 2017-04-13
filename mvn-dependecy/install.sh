@@ -1,1 +1,0 @@
-mvn install:install-file -Dfile='jaws-bin.jar' -DgroupId=jaws -DartifactId=jaws -Dversion='1.2' -Dpackaging=jar 

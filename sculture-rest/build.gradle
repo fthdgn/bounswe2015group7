@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+        luceneVersion = '6.5.0'
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.14.0'
+        classpath 'com.github.michaelruocco:embedded-mysql-plugin:2.1.5'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'embedded-mysql'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile("org.apache.lucene:lucene-core:${luceneVersion}")
+    compile("org.apache.lucene:lucene-analyzers-common:${luceneVersion}")
+    compile("org.apache.lucene:lucene-queryparser:${luceneVersion}")
+
+    runtime("javax.servlet:javax.servlet-api:4.0.0-b05")
+    runtime("mysql:mysql-connector-java:6.0.6")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+embeddedMysql {
+    url = 'jdbc:mysql://localhost:3306/sculture'
+    username = 'sculture'
+    password = 'secret'
+    version = 'v5_7_latest'
+}
