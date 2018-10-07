@@ -4,7 +4,7 @@ package com.sculture;
  * Created by safa on 05/01/16.
  */
 public class Const {
-    public static final String REST_BASE_URL = "http://52.59.252.52:9000";
+    public static final String REST_BASE_URL = BuildConfig.API_BASE;
 
     public class Api {
         public static final String USER_REGISTER = "/user/register";
